@@ -2,25 +2,38 @@
 
 🛋️ Dekoruma O2O Optimization & Omnichannel Attribution
 
-## 1. Project Overview
-Proyek ini menganalisis histori transaksi dan data operasional **Dekoruma** periode tahun 2023 untuk mengidentifikasi celah operasional yang menguras margin, mengevaluasi sinkronisasi logistik pengiriman dan perakitan *Bulky Goods*, serta mengungkap fenomena atribusi penjualan *omnichannel* (*showrooming*).
-Fokus utamanya adalah bagaimana pemahaman terhadap perilaku konsumen dan siklus rantai pasok (*supply chain*) dapat dimanfaatkan untuk menekan biaya retur logistik yang tinggi serta meningkatkan kepuasan pelanggan secara signifikan.
+## 1. Project Overview & Business Context
+Perjalanan Dekoruma berekspansi menjadi raksasa *omnichannel* Home & Living lewat puluhan Dekoruma Experience Center (DEC) sukses menaikkan konversi penjualan. Namun, ada celah operasional yang menguras margin saat menangani pengiriman furnitur berdimensi besar (*Bulky Goods*).
 
-🎯 **Key Objectives:**
-*   **Objective 1:** Menganalisis *lead time* (selisih waktu) antara barang tiba di rumah pelanggan dan kedatangan tim perakit (*installer*).
-*   **Objective 2:** Mengidentifikasi kategori furnitur dan *supplier* yang paling sering mengalami kegagalan perakitan (*Failed Installation*) akibat komponen hilang atau rusak.
-*   **Objective 3:** Mengungkap fenomena *showrooming* antara Dekoruma Experience Center (DEC) fisik dan aplikasi digital untuk atribusi komisi penjualan yang adil.
+Pengiriman dan perakitan furnitur sering kali tidak sinkron. Banyak kasus di mana barang tiba di rumah pelanggan, tetapi tim perakit (*Installer*) baru datang beberapa hari kemudian. Masalah semakin memburuk ketika tim perakit menemukan bahwa komponen furnitur tersebut kurang (*Missing Parts*) dari pabrik, yang berujung pada batalnya perakitan (*Failed Installation*) dan memaksa perusahaan menanggung biaya retur logistik yang sangat mahal. Di sisi lain, dominasi transaksi di *Mobile App* membuat DEC fisik terlihat *underperform* di sistem, memunculkan dugaan kuat adanya fenomena *showrooming* yang tidak teratribusi dengan baik.
 
----
-
-## 2. Data Sources
-*   **Dataset 1 (`dekoruma_stores`):** Data dimensi saluran penjualan (*Physical Store, Mobile App, Web*).
-*   **Dataset 2 (`dekoruma_products`):** Data dimensi produk, mencakup kategori dan syarat perakitan furnitur.
-*   **Dataset 3 (`dekoruma_orders`):** Data fakta transaksi sebanyak 300.000 baris, memuat ID tukang, tanggal kirim & rakit, status kegagalan, hingga biaya perakitan (*assembly fee*).
+🎯 **Key Objectives & Business Questions:**
+*   **Objective 1 (Logistics Sync):** Berapa rata-rata *lead time* (selisih hari) pelanggan menunggu dari barang tiba hingga dirakit?
+*   **Objective 2 (Supplier QC):** Kategori furnitur apa yang paling sering gagal dirakit, dan apa alasan utamanya?
+*   **Objective 3 (Omnichannel Attribution):** Sejauh mana fenomena *showrooming* terjadi antara DEC fisik dan Aplikasi Digital?
+*   **Data Cleansing & Integrity:** Menangani standardisasi kategori produk yang tumpang tindih, anomali *Logical Error* (tanggal rakit mendahului tanggal kirim), serta *Outliers* pada biaya perakitan.
 
 ---
 
-## 3. Technologies Used
+## 2. Goals & Stakeholders
+*   **Tujuan Analisis (Goals):**
+    *   **Logistics Sync:** Membangun dasar *rules* sistem untuk menyelaraskan jadwal truk (*Delivery*) dan tukang rakit (*Installer*).
+    *   **Supplier QC:** Menemukan kategori produk dan *supplier* yang paling banyak merugikan perusahaan untuk diberikan penalti terukur.
+    *   **Omnichannel Attribution:** Mengungkap angka 'Hidden Sales' agar komisi *Sales Consultant* di toko fisik tetap teratribusi dengan adil.
+    *   **Data Cleansing:** Menutup celah *bug* anomali pencatatan waktu di sistem kasir.
+*   **Stakeholders:** Tim Logistik, Tim *Quality Control* (QC), dan Manajemen *Retail Omnichannel*.
+
+---
+
+## 3. Data Sources & Dictionary
+Analisis ini menggunakan 3 tabel relasional yang memuat 300.000 baris data histori pesanan:
+*   **`dekoruma_stores`:** Data dimensi saluran penjualan (*Physical Store, Mobile App, Web*).
+*   **`dekoruma_products`:** Data dimensi produk, mencakup kategori dan syarat perakitan.
+*   **`dekoruma_orders`:** Data fakta transaksi, memuat ID tukang, tanggal kirim & rakit, status kegagalan, hingga biaya perakitan.
+
+---
+
+## 4. Technologies Used
 *   **Programming Language:** Python (Pandas, NumPy)
 *   **Database & Query:** MySQL, SQLAlchemy, PyMySQL
 *   **Visualization:** Matplotlib, Seaborn, Tableau
@@ -28,7 +41,7 @@ Fokus utamanya adalah bagaimana pemahaman terhadap perilaku konsumen dan siklus 
 
 ---
 
-## 4. Project Structure
+## 5. Project Structure
 ```
 📂 dekoruma-operations-analysis
 ├── 📄 README.md (Summary & Temuan)
@@ -42,9 +55,9 @@ Fokus utamanya adalah bagaimana pemahaman terhadap perilaku konsumen dan siklus 
 ```
 ---
 
-📊 **5. Summary of Findings**
+📊 **6. Summary of Findings**
 
-💡 **5.1 Business Insights**
+💡 **6.1 Business Insights**
 *Note: Analisis dilakukan berdasarkan 300.000 data transaksi histori pesanan dengan fokus pada efisiensi operasional dan sinkronisasi logistik.*
 
 | Aspek | Temuan Utama | Dampak Bisnis |
@@ -56,7 +69,7 @@ Fokus utamanya adalah bagaimana pemahaman terhadap perilaku konsumen dan siklus 
 
 ---
 
-🚀 **5.2 Actionable Recommendations**
+🚀 **6.2 Actionable Recommendations**
 
 📈 **Strategi Operasional & Logistik**
 *   **SLA Sync Maksimal 24 Jam:** Membangun *rules* sistem IT yang mewajibkan penjadwalan truk pengiriman (*Delivery*) dan tukang rakit (*Installer*) terjadi di hari yang sama atau maksimal selisih $H+1$.
@@ -67,7 +80,7 @@ Fokus utamanya adalah bagaimana pemahaman terhadap perilaku konsumen dan siklus 
 
 ---
 
-## 6. Contact
+## 7. Contact
 *   **Nama:** Avan Kantona Wongso
 *   **E-Mail:** avanwongso@gmail.com
 *   **Presentation Link:** https://drive.google.com/drive/folders/16rUi7tyszwvpeMQFsabav9z1Ix2V97bY?usp=drive_link
