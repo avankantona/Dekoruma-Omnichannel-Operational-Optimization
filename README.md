@@ -23,7 +23,7 @@ Fokus utamanya adalah bagaimana pemahaman terhadap perilaku konsumen dan siklus 
 ## 3. Technologies Used
 *   **Programming Language:** Python (Pandas, NumPy)
 *   **Database & Query:** MySQL, SQLAlchemy, PyMySQL
-*   **Visualization:** Matplotlib, Seaborn
+*   **Visualization:** Matplotlib, Seaborn, Tableau
 *   **Environment:** Jupyter Notebook
 
 ---
@@ -71,3 +71,4 @@ Fokus utamanya adalah bagaimana pemahaman terhadap perilaku konsumen dan siklus 
 *   **Nama:** Avan Kantona Wongso
 *   **E-Mail:** avanwongso@gmail.com
 *   **Presentation Link:** https://drive.google.com/drive/folders/16rUi7tyszwvpeMQFsabav9z1Ix2V97bY?usp=drive_link
+*   **Tableau Link:** https://public.tableau.com/views/DekorumaOmnichannelOperationalOptimization/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
